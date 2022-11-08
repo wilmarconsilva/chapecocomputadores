@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<header style="background-color: blue;" class="d-flex flex-wrap py-3 mb-4 border-bottom">
+<header style="background-color: #A4151E;" class="d-flex flex-wrap py-3 mb-4 border-bottom">
   <a href="./index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
     <svg class="bi me-2" width="40" height="32">
       <use xlink:href="#bootstrap"></use>
@@ -20,44 +20,64 @@
 </header>
 
 <body>
-  <div class="container">
-    <a class="links" id="paracadastro"></a>
-    <a class="links" id="paralogin"></a>
 
-    <!--FORMULÁRIO DE CADASTRO-->
-    <div id="cadastro">
-      <h1 style="padding-bottom: 20px; text-align: justify;">Cadastro</h1>
+  <div class="row">
+    <!--inicio col cadastro-->
+    <div class="col">
+      <div class="container">
+        <a class="links" id="paracadastro"></a>
+        <a class="links" id="paralogin"></a>
 
-      <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Nome</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Desejo receber e-mails de Marketing</label>
-        </div>
-        <button style='text-align: center;'="button" class="btn btn-primary btn-lg">Cadastrar</button>
-      </form>
+        <!--FORMULÁRIO DE CADASTRO-->
+        <div id="cadastro">
+          <h1 style="padding-bottom: 20px; text-align: justify;">Cadastro</h1>
 
-      <a class="link" style="text-decoration: none;" href="./login.html">
-        <p class='fs-6' style="padding-top: 10px;">
-          Já tem uma conta?
-        </p>
-      </a>
+          <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Nome</label>
+              <input type="email" class="form-control" id="cad-nome" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input type="email" class="form-control" id="cad-email" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Senha</label>
+              <input type="password" class="form-control" id="cad-senha">
+            </div>
+            <button id="botao">Cadastrar</button>
+          </form>
 
+          <!--fim col cadastro-->
+        </div>
+      </div>
     </div>
+
+    <div class="col">
+      <!--inicio col cadastro-->
+      <div class="content container">
+
+        <!--FORMULÁRIO DE LOGIN-->
+        <form>
+          <h1 style="padding-bottom: 20px; text-align: justify;">Login</h1>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" class="form-control" id="login-email" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="login-senha">
+          </div>
+          <button id="botao">Login</button>
+        </form>
+        <!--fim col cadastro-->
+      </div>
+    </div>
+  <!--fim row-->
   </div>
 
-  <footer style="width: 100%; height: 100px; position: absolute; bottom: 0;" class="bg-dark text-center text-white">
+  <footer style=" margin-top: 30px; color: white; width: 100%; height: 100px; bottom: 0; text-align: center; background-color: #A4151E;">
     <!-- Grid container -->
     <div class="container p-4 pb-0">
       <!-- Section: Social media -->
@@ -99,20 +119,20 @@
 
       </section>
       <!-- Section: Social media -->
-      
+
     </div>
     <!-- Grid container -->
 
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: blue;">
-      © 2022 Wilson, Jonathan, Jordan, Gabriel e Lucas
+    <div class="text-center p-3" style="background-color: #790C14;">
+      © 2022 Só nos compiuter
     </div>
     <!-- Copyright -->
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-  </script>
+    </script>
 
 </body>
 

@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<header style="background-color: blue;" class="d-flex flex-wrap py-3 mb-4 border-bottom">
+<header style="background-color: #A4151E;" class="d-flex flex-wrap py-3 mb-4 border-bottom">
   <a href="./index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
     <svg class="bi me-2" width="40" height="32">
       <use xlink:href="#bootstrap"></use>
@@ -49,13 +49,13 @@
             </h5>
           </td>
           <td width="110">
-            <button>-</button>
+            <button id="botao">-</button>
             1
-            <button>+</button>
+            <button id="botao">+</button>
           </td>
           <td style="width: 160px;">1 x R$&nbsp;2.348,86</td>
           <td width="40">
-            <button>Remover</button>
+            <button id="botao">Remover</button>
           </td>
         </tr>
       </tbody>
@@ -64,7 +64,7 @@
 
     <div style="padding-top: 1.5rem;">
       <div style="text-align: right;">
-        <button style="text-align: right;">Limpar Carrinho</button>
+        <button id="botao" style="text-align: right;">Limpar Carrinho</button>
       </div>
 
       <div>
@@ -75,7 +75,7 @@
         </div>
 
         <div style="padding-top: 10px;" id="calcular-frete">
-          <button>Calcular</button>
+          <button id="botao">Calcular</button>
 
           <fieldset style="padding-top: 10px;" id="lista-fretes">
             <input type="radio">
@@ -85,9 +85,9 @@
       </div>
 
       <div id="resumo-carrinho" style="padding-top: 30px; text-align: center;">
-        <h5>Resumo</h5>
+        <h5 style="margin-bottom: 30px;">Resumo</h5>
         <p>Subtotal: R$&nbsp;2.348,86</p>
-        <p>Frete: R$&nbsp;34,23 Intelipost - Rede Sul - de 1 a 5 dias úteis</p>
+        <p>Frete: R$&nbsp;34,23 - Bauer Cargas - de 1 a 5 dias úteis</p>
         <p>Total: 2.383,09</p>
 
         <div>
@@ -101,12 +101,12 @@
       </div>
 
       <div style="text-align: center; padding-top: 30px;">
-        <button>Finalizar Pedido</button>
+        <button id="botao" >Finalizar Pedido</button>
       </div>
     </div>
   </div>
 
-  <footer style="width: 100%; height: 100px; position: absolute; bottom: 0;" class="bg-dark text-center text-white">
+  <footer style=" margin-top: 30px; color: white; width: 100%; height: 100px; bottom: 0; text-align: center; background-color: #A4151E;">
     <!-- Grid container -->
     <div class="container p-4 pb-0">
       <!-- Section: Social media -->
@@ -153,8 +153,8 @@
     <!-- Grid container -->
 
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: blue;">
-      © 2022 Wilson, Jonathan, Jordan, Gabriel e Lucas
+    <div class="text-center p-3" style="background-color: #790C14;">
+      © 2022 Só nos compiuter
     </div>
     <!-- Copyright -->
   </footer>
