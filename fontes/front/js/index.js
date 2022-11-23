@@ -21,9 +21,14 @@ function requisition(url)
 div = document.getElementById('products-slick');
 div.innerHTML = '';
 
+const categorys = new Map();
+categorys.set('MOBO', 'Placas-Mães'); 
+categorys.set('CPU', 'Processadores');
+categorys.set('RAM', 'Memórias');
+categorys.set('GAB', 'Gabinetes');
+
 function showProducts()
 {
-    const products = requisition('http://localhost:3000/produtos');
 
     for (let i = 0; i < products.length; i++) 
     {
@@ -35,7 +40,8 @@ function showProducts()
         //link img
         var link_img = document.createElement('a');
         link_img.href = 
-        link_img.id = prod_id;
+        
+        link_img.id = product[i].prod_id;
         link_img.onclick = function (e)
         {
             details(this.id)
@@ -48,14 +54,13 @@ function showProducts()
         link_img.appendChild(img);
         product.appendChild(link_img);
 
-
         //div body
         var div_body = document.createElement('div');
         div_body.classList.add('product-body');
         //categoria
         var p = document.createElement('p');
         p.classList.add('product-category');
-        p.innerHTML = product.prod_type;
+        p.innerHTML = categorys.get(products[i].prod_type);
         //nome
         var name
 
