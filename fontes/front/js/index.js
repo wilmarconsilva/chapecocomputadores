@@ -18,14 +18,19 @@ function requisition(url)
     return JSON.parse(xhttp.responseText);
 }
 
-div = document.getElementById('products-slick');
-div.innerHTML = '';
+//receber todos os produtos
+products = requisition('http://localhost:3000/produtos')
 
+//hash categorias
 const categorys = new Map();
 categorys.set('MOBO', 'Placas-Mães'); 
 categorys.set('CPU', 'Processadores');
 categorys.set('RAM', 'Memórias');
 categorys.set('GAB', 'Gabinetes');
+
+//limpar mais vendidos
+div_mostSelledProducts = document.getElementById('products-slick');
+div_mostSelledProducts.innerHTML = '';
 
 function showMostSelledProducts()
 {
