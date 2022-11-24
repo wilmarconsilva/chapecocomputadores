@@ -1,12 +1,3 @@
-function teste()
-{
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET",'http://localhost:3000/produtos', false);
-    xhttp.setRequestHeader('Content-type', 'application/json');
-    xhttp.send();
-    console.log(JSON.parse(xhttp.responseText));
-}
-
 function requisition(url)
 {
     var xhttp = new XMLHttpRequest();
@@ -19,7 +10,7 @@ function requisition(url)
 }
 
 //receber todos os produtos
-products = requisition('http://localhost:3000/produtos')
+const products = requisition('http://localhost:3000/produtos')
 
 //hash categorias
 const categorys = new Map();
@@ -46,18 +37,19 @@ function showMostSelledProducts()
         var link_img = document.createElement('a');
         link_img.href = '#'
         
-        link_img.id = product[i].prod_id;
+        link_img.id = products[i].prod_id;
         link_img.onclick = function (e)
         {
             details(this.id)
         }
         //img
         var img = document.createElement("img");
-        img.src = product[i].prod_img;
+        img.src = products[i].prod_img;
         img.classList.add("product-img");
         //append
         link_img.appendChild(img);
-        product.appendChild(link_img);
+        products.appendChild(link_img);
+
 
         //div body
         var div_body = document.createElement('div');
@@ -82,6 +74,8 @@ function showMostSelledProducts()
         div_body.appendChild(name);
         div_body.appendChild(price);
 
+        products.appendChild(div_body);
+
         //div add to cart
         var div_addCart = document.createElement('div');
         div_addCart.classList.add('add-to-cart');
@@ -94,6 +88,8 @@ function showMostSelledProducts()
         //append
         div_addCart.appendChild(btn);
         btn.appendChild(i_btn);
+
+        products.appendChild(div_addCart);
 
     }
 
