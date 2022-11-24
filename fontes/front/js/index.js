@@ -48,7 +48,7 @@ function showMostSelledProducts()
         img.classList.add("product-img");
         //append
         link_img.appendChild(img);
-        products.appendChild(link_img);
+        product.appendChild(link_img);
 
 
         //div body
@@ -63,18 +63,18 @@ function showMostSelledProducts()
         name.classList.add('product-name');
         link_name = document.createElement('a');
         link_name.href = '#'
-        link_name.innerHTML = product[i].prod_desc;
+        link_name.innerHTML = products[i].prod_desc;
         name.appendChild(link_name);
         //preço
         price = document.createElement('h4');
         price.classList.add('product-price');
-        price.innerHTML = prod_price;
+        price.innerHTML = products[i].prod_price;
         //append
         div_body.appendChild(p);
         div_body.appendChild(name);
         div_body.appendChild(price);
 
-        products.appendChild(div_body);
+        product.appendChild(div_body);
 
         //div add to cart
         var div_addCart = document.createElement('div');
@@ -84,12 +84,13 @@ function showMostSelledProducts()
         btn.classList.add('add-to-cart-btn');
         btn.innerHTML ='Colocar no carrrinho';
         var i_btn = document.createElement('i');
-        i_btn.classList.add('fa fa-shopping-cart');
+        i_btn.classList.add('fa');
+        i_btn.classList.add('fa-shopping-cart');
         //append
         div_addCart.appendChild(btn);
         btn.appendChild(i_btn);
 
-        products.appendChild(div_addCart);
+        product.appendChild(div_addCart);
 
     }
 
