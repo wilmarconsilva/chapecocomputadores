@@ -8,6 +8,8 @@ function requisition(url) {
     return JSON.parse(xhttp.responseText);
 }
 
+var isLogged = false;
+
 //limpar carrinho
 var div_cart = document.getElementById('cart-list');
 var div_CartSummary = document.getElementById('cart-summary');
@@ -35,6 +37,7 @@ div_newProducts.innerHTML = '';
 function showMostSelledProducts() {
 
     for (let i = 0; i < products.length; i++) {
+
         //div principal
         var product = document.createElement("div");
         product.classList.add("product");
@@ -45,9 +48,8 @@ function showMostSelledProducts() {
         link_img.href = './details.html';
         link_img.classList.add('product-img');
 
-        link_img.id = products[i].prod_id;
-        link_img.onclick = function (e) 
-        {
+        link_img.id = products[i].prod_id
+        link_img.onclick = function (e) {
             details(this.id)
         }
         //img
@@ -92,8 +94,7 @@ function showMostSelledProducts() {
         var btn = document.createElement('button');
         btn.classList.add('add-to-cart-btn');
         btn.innerHTML = 'Colocar no carrrinho';
-        btn.onclick = function (e)
-        {
+        btn.onclick = function (e) {
             addProductCart(products[i].prod_id);
         }
         var i_btn = document.createElement('i');
@@ -172,8 +173,7 @@ function showNewProducts() {
         var btn = document.createElement('button');
         btn.classList.add('add-to-cart-btn');
         btn.innerHTML = 'Colocar no carrrinho';
-        btn.onclick = function (e)
-        {
+        btn.onclick = function (e) {
             addProductCart(products[i].prod_id);
         }
         var i_btn = document.createElement('i');
@@ -192,13 +192,10 @@ function showNewProducts() {
 
 }
 
-function details(id)
-{
-    for (const i in products) 
-    {
-        if (products[i].prod_id)
-        {
-            
+function details(id) {
+    for (const i in products) {
+        if (products[i].prod_id) {
+
         }
     }
 }
@@ -274,8 +271,7 @@ function showProductsbyCategory(category) {
             var btn = document.createElement('button');
             btn.classList.add('add-to-cart-btn');
             btn.innerHTML = 'Colocar no carrrinho';
-            btn.onclick = function (e)
-            {
+            btn.onclick = function (e) {
                 addProductCart(products[i].prod_id);
             }
             var i_btn = document.createElement('i');
@@ -370,8 +366,7 @@ function showProductsbySearch() {
             var btn = document.createElement('button');
             btn.classList.add('add-to-cart-btn');
             btn.innerHTML = 'Colocar no carrrinho';
-            btn.onclick = function (e)
-            {
+            btn.onclick = function (e) {
                 addProductCart(products[i].prod_id);
             }
             var i_btn = document.createElement('i');
@@ -396,84 +391,80 @@ function addProductCart(prod_id) {
 
     //procurar pelo produto
     for (const i in products) {
-        if (products[i].prod_id == prod_id) 
-        {
+        if (products[i].prod_id == prod_id) {
             product = products[i];
         }
     }
+        //carrinho
+        var div_pai = document.getElementById('cart-list');
 
-    //carrinho
-    var div_pai = document.getElementById('cart-list');
 
+        //produto
+        var div_product = document.createElement('div');
+        div_product.classList.add('product-widget');
+        div_product.id = 'product-cart-' + product.prod_id;
 
-    //produto
-    var div_product = document.createElement('div');
-    div_product.classList.add('product-widget');
-    div_product.id = 'product-cart-' + product.prod_id;
+        //link img
+        var link_img = document.createElement('a');
+        link_img.href = '';
+        link_img.classList.add('product-img');
 
-    //link img
-    var link_img = document.createElement('a');
-    link_img.href = '';
-    link_img.classList.add('product-img');
+        link_img.id = product.prod_id;
+        link_img.onclick = function (e) {
+            details(this.id)
+        }
+        //img
+        var img = document.createElement("img");
+        img.src = '/fontes/front/img/' + product.imgpath + '.jpg';
+        img.classList.add("product-img");
+        //append
+        link_img.appendChild(img);
+        //append pai
+        div_product.appendChild(link_img);
 
-    link_img.id = products[i].prod_id;
-    link_img.onclick = function (e) {
-        details(this.id)
+        //div body
+        var div_body = document.createElement('div');
+        div_body.classList.add('product-body');
+        //nome
+        var name = document.createElement('h3');
+        name.classList.add('product-name');
+        link_name = document.createElement('a');
+        link_name.href = './details.html'
+        link_name.innerHTML = product.prod_desc;
+        name.appendChild(link_name);
+        //preço
+        var price = document.createElement('h4');
+        price.classList.add('product-price');
+        price.innerHTML = 'R$ ' + product.prod_preco + ',99';
+        //quantidade
+        var span = document.createElement('span');
+        span.classList.add('qty');
+        var qty = 1;
+        span.innerHTML = qty;
+        price.appendChild(span);
+        //append
+        div_body.appendChild(name);
+        div_body.appendChild(price);
+        //append pai
+        div_pai.appendChild(div_body);
+
+        //button delete
+        var button = document.createElement('button');
+        button.classList.add('delete');
+        button.onclick = function (e) {
+            deleteFromCart(product.prod_id)
+        };
+        //icon delete
+        var i = document.createElement('i');
+        i.classList.add('fa');
+        i.classList.add('fa-close');
+        //append
+        button.appendChild(i);
+        //append pai
+        div_pai.appendChild(button);
     }
-    //img
-    var img = document.createElement("img");
-    img.src = '/fontes/front/img/' + products[i].imgpath + '.jpg';
-    img.classList.add("product-img");
-    //append
-    link_img.appendChild(img);
-    //append pai
-    div_product.appendChild(link_img);
-
-    //div body
-    var div_body = document.createElement('div');
-    div_body.classList.add('product-body');
-    //nome
-    var name = document.createElement('h3');
-    name.classList.add('product-name');
-    link_name = document.createElement('a');
-    link_name.href = './details.html'
-    link_name.innerHTML = products[i].prod_desc;
-    name.appendChild(link_name);
-    //preço
-    var price = document.createElement('h4');
-    price.classList.add('product-price');
-    price.innerHTML = 'R$ ' + products[i].prod_preco + ',99';
-    //quantidade
-    var span = document.createElement('span');
-    span.classList.add('qty');
-    price.appendChild(span);
-    //append
-    div_body.appendChild(p);
-    div_body.appendChild(name);
-    div_body.appendChild(price);
-    //append pai
-    div_pai.appendChild(div_body);
-
-    //button delete
-    var button = document.createElement('button');
-    button.classList.add('delete');
-    button.onclick = function (e)
-    {
-        deleteFromCart(product.prod_id)
-    };
-    //icon delete
-    var i = document.createElement('i');
-    i.classList.add('fa');
-    i.classList.add('fa-close');
-    //append
-    button.appendChild(i);
-    //append pai
-    div_pai.appendChild(button);
-    
-
-}
 
 function deleteFromCart(prod_id) {
     div_ProductCart = document.getElementById('product-cart-' + prod_id);
-    div_ProductCart = '';
+    div_ProductCart.innerHTML = '';
 }
