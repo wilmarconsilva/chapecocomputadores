@@ -8,7 +8,15 @@ function requisition(url) {
     return JSON.parse(xhttp.responseText);
 }
 
-var isLogged = false;
+function post(url, obj) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", url, false);
+    xhttp.setRequestHeader('Content-type', 'application/json');
+    xhttp.send(JSON.stringify(obj));
+    console.log(JSON.parse(xhttp.responseText));
+
+    return JSON.parse(xhttp.responseText);
+}
 
 //limpar carrinho
 var div_cart = document.getElementById('cart-list');
@@ -33,6 +41,19 @@ div_mostSelledProducts.innerHTML = '';
 //limpar lançamentos
 var div_newProducts = document.getElementById('products-slick-2');
 div_newProducts.innerHTML = '';
+
+function isLogged()
+{
+    const user_id = window.sessionStorage.getItem('id');
+    
+    //icone login
+    login_icon = document.getElementById('icon-login');
+    
+    if (user_id)
+    {
+        login_icon = '';
+    }
+}
 
 function showMostSelledProducts() {
 
@@ -386,15 +407,20 @@ function showProductsbySearch() {
 }
 
 function addProductCart(prod_id) {
+    
+    //vef login
+    const user_id = window.sessionStorage.getItem('id');
 
-    var product;
+    if (user_id) {
 
-    //procurar pelo produto
-    for (const i in products) {
-        if (products[i].prod_id == prod_id) {
-            product = products[i];
+        var product;
+
+        //procurar pelo produto
+        for (const i in products) {
+            if (products[i].prod_id == prod_id) {
+                product = products[i];
+            }
         }
-    }
         //carrinho
         var div_pai = document.getElementById('cart-list');
 
@@ -462,9 +488,67 @@ function addProductCart(prod_id) {
         button.appendChild(i);
         //append pai
         div_pai.appendChild(button);
+        
+        alert('Produto adicionado ao carrinho');
     }
+
+    else
+    {
+        //modal
+    }
+
+}
 
 function deleteFromCart(prod_id) {
     div_ProductCart = document.getElementById('product-cart-' + prod_id);
     div_ProductCart.innerHTML = '';
+}
+
+function sendNewUser() {
+    const name = document.getElementById('user-name').value;
+    const email = document.getElementById('user-email').value;
+    const password = document.getElementById('user-password').value;
+    const cpf = document.getElementById('user-cpf').value;
+
+    var user_register
+    {
+        cli_nome: name;
+        cli_email: email;
+        cli_password: password;
+        cli_cpfcnpj: cpf;
+    };
+
+    const user = post('localhost:3000/clientes', user_register);
+
+    if (!user.message) {
+        alert('Usuário cadastrado');
+    }
+
+    else {
+        alert(user.message)
+    }
+
+}
+
+function login() {
+    const email = document.getElementById('email-login').value;
+    const password = document.getElementById('password-login').value;
+
+    var user_login
+    {
+        cli_email: email;
+        cli_password: password;
+    }
+
+    const user = post('localhost:3000/clientes', user_login);
+
+    if (user.id != 0) {
+        window.sessionStorage.setItem('id', user.id)
+        alert('Login efetuado com sucesso')
+    }
+
+    else {
+        alert('Credenciais incorretas');
+    }
+
 }
