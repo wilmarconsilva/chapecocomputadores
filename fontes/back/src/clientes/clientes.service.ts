@@ -42,7 +42,7 @@ export class ClientesService {
   }
 
   findOne(id: number) {
-    return this.clientesRepository.findOneBy({id});
+    return this.clientesRepository.findOneBy({cli_id: id});
   }
 
   update(id: number, updateClienteDto: UpdateClienteDto) {

@@ -3,13 +3,13 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity({name:'clientes'})
 export class Cliente {
   @PrimaryGeneratedColumn()
-  id: number;
+  cli_id: number;
 
   @Column()
   cli_nome: string;
 
   @Column()
-  cli_cpfcnpj: string;
+  cli_cpfcnpj: number;
 
   @Column()
   cli_fone: string;
