@@ -4,6 +4,7 @@ import { ClientesModule } from './clientes/clientes.module';
 import { Cliente } from './clientes/entities/cliente.entity';
 import { Produto } from './produtos/entities/produto.entity';
 import { ProdutosModule } from './produtos/produtos.module';
+import { PedidosModule } from './pedidos/pedidos.module';
 @Module({
   imports: [ClientesModule, TypeOrmModule.forRoot({
     type: 'mysql',
@@ -13,7 +14,7 @@ import { ProdutosModule } from './produtos/produtos.module';
     password: 'mysql',
     database: 'chapeco_computadores',
     autoLoadEntities: true,
-  }), ProdutosModule,],
+  }), ProdutosModule, PedidosModule,],
   controllers: [],
   providers: [],
 })
