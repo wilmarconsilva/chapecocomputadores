@@ -33,6 +33,8 @@ categorys.set('MOBO', 'Placas-Mães');
 categorys.set('CPU', 'Processadores');
 categorys.set('RAM', 'Memórias');
 categorys.set('GAB', 'Gabinetes');
+categorys.set('FON', 'Fontes');
+categorys.set('SSD', 'Armazenamentos');
 
 //limpar mais vendidos
 var div_mostSelledProducts = document.getElementById('products-slick');
@@ -47,11 +49,15 @@ function isLogged()
     const user_id = window.sessionStorage.getItem('id');
     
     //icone login
-    login_icon = document.getElementById('icon-login');
+    var login_icon = document.getElementById('icon-login');
+    //icone carrinho
+    var cart_icon = document.getElementById('link-cart');
+    cart_icon.href = './login-registration.html';
     
     if (user_id)
     {
-        login_icon = '';
+        login_icon.innerHTML = '';
+        cart_icon.href = '';
     }
 }
 
@@ -412,13 +418,22 @@ function addProductCart(prod_id) {
     const user_id = window.sessionStorage.getItem('id');
 
     if (user_id) {
+        
+        //recebe produtos do carrinho
+        const products_cart =
 
         var product;
-
         //procurar pelo produto
         for (const i in products) {
             if (products[i].prod_id == prod_id) {
                 product = products[i];
+            }
+        }
+
+        //procura se o produto já existe no carrinho
+        for (const i in products_cart) {
+            if (products_cart[i].prod_id == prod_id) {
+                product = products_cart[i];
             }
         }
         //carrinho
@@ -429,11 +444,15 @@ function addProductCart(prod_id) {
         var div_product = document.createElement('div');
         div_product.classList.add('product-widget');
         div_product.id = 'product-cart-' + product.prod_id;
+        //append master
+        div_pai.appendChild(div_product);
 
+        //div img
+        var div_img = document.getElementById('div')
+        div_img.classList.add('product-img')
         //link img
         var link_img = document.createElement('a');
-        link_img.href = '';
-        link_img.classList.add('product-img');
+        link_img.href = './details.html';
 
         link_img.id = product.prod_id;
         link_img.onclick = function (e) {
@@ -445,8 +464,11 @@ function addProductCart(prod_id) {
         img.classList.add("product-img");
         //append
         link_img.appendChild(img);
+        //append
+        div_img.appendChild(link_img);
         //append pai
         div_product.appendChild(link_img);
+        
 
         //div body
         var div_body = document.createElement('div');
@@ -466,13 +488,13 @@ function addProductCart(prod_id) {
         var span = document.createElement('span');
         span.classList.add('qty');
         var qty = 1;
-        span.innerHTML = qty;
+        span.innerHTML = qty + 'x';
         price.appendChild(span);
         //append
         div_body.appendChild(name);
         div_body.appendChild(price);
         //append pai
-        div_pai.appendChild(div_body);
+        div_product.appendChild(div_body);
 
         //button delete
         var button = document.createElement('button');
@@ -487,14 +509,21 @@ function addProductCart(prod_id) {
         //append
         button.appendChild(i);
         //append pai
-        div_pai.appendChild(button);
+        div_product.appendChild(button);
+
+        //quantidade de itens do carrinho
+        cart_qty_icon = document.getElementById('cart-qty');
+        cart_qty_icon.innerHTML = products_cart.length
         
+        //envia produtos para o carrinho
+
+
         alert('Produto adicionado ao carrinho');
     }
 
     else
     {
-        //modal
+        $('login-modal').modal('show'); 
     }
 
 }
@@ -502,6 +531,8 @@ function addProductCart(prod_id) {
 function deleteFromCart(prod_id) {
     div_ProductCart = document.getElementById('product-cart-' + prod_id);
     div_ProductCart.innerHTML = '';
+
+    alert('Produto deletado do carrinho');
 }
 
 function sendNewUser() {
