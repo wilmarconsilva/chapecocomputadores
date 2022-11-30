@@ -195,36 +195,43 @@
 								<h3 class="title">CADASTRE-SE</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="Nome">
+								<input id="user-name" class="input" type="text" name="first-name" placeholder="Nome">
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email">
+								<input id='user-email' class="input" type="email" name="email" placeholder="Email">
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="password" placeholder="Senha">
+								<input id="user-password" class="input" type="password" name="password" placeholder="Senha">
+							</div>
+							<div class="form-group">
+								<input id="user-cpf" class="input" type="password" name="password" placeholder="CPF">
+							</div>
+							<div class="add-to-cart">
+								<button onclick="sendNewUser()" class="btn btn-danger">Cadastrar</button>
 							</div>
 						</div>
 						<!-- /Registration -->
 					</div>
 
-					<!-- Login -->
+					<!-- Registration -->
 					<div class="col-md-7">
-
-						<!-- Registration -->
+						
 						<div class="shiping-details">
 							<div class="section-title">
 								<h3 class="title">LOGIN</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email">
+								<input id="email-login" class="input" type="email" name="email" placeholder="Email">
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="password" placeholder="Senha">
+								<input id="-password-login" class="input" type="password" name="password" placeholder="Senha">
+							</div>
+							<div class="add-to-cart">
+								<button class="btn btn-danger">Entrar</button>
 							</div>
 						</div>
-						<!-- /Login -->
 					</div>
-					<!-- /Login -->
+					<!-- Registration -->
 				</div>
 				<!-- /row -->
 			</div>
