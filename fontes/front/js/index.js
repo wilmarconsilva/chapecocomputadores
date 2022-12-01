@@ -618,12 +618,12 @@ function addProductCart(prod_id) {
             div_product.appendChild(button);
 
             //transforma o produto em struct
-            var product_struct
+            var product_struct =
             {
-                prod_id: product.prod_id;
-                price: product.price;
-                qty: 1;
-                imgpath: '/fontes/front/img/' + product.imgpath + '.jpg';
+                prod_id: product.prod_id,
+                price: product.price,
+                qty: 1,
+                imgpath: '/fontes/front/img/' + product.imgpath + '.jpg'
             }
 
             //envia o produto para o carrinho
@@ -676,17 +676,19 @@ function deleteFromCart(prod_id) {
 }
 
 function sendNewUser() {
+
+    //get data
     const name = document.getElementById('user-name').value;
     const email = document.getElementById('user-email').value;
     const password = document.getElementById('user-password').value;
     const cpf = document.getElementById('user-cpf').value;
 
-    var user_register
+    var user_register =
     {
-        cli_nome: name;
-        cli_email: email;
-        cli_password: password;
-        cli_cpfcnpj: cpf;
+        cli_nome: name,
+        cli_email: email,
+        cli_password: password,
+        cli_cpfcnpj: cpf
     };
 
     const user = post('localhost:3000/clientes', user_register);
@@ -705,10 +707,10 @@ function login() {
     const email = document.getElementById('email-login').value;
     const password = document.getElementById('password-login').value;
 
-    var user_login
+    var user_login =
     {
-        cli_email: email;
-        cli_password: password;
+        cli_email: email,
+        cli_password: password
     }
 
     const user = post('localhost:3000/clientes', user_login);
