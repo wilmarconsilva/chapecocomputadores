@@ -153,7 +153,7 @@ function getCart() {
 
             //envia o produto para o carrinho
             products_cart.push(product_struct);
-            window.localStorage.setItem('cart-content', product_struct);
+            window.localStorage.setItem('cart-content', JSON.stringify(product_struct));
 
             //aplicar quantidade de itens do carrinho no ícone
             cart_qty_icon = document.getElementById('cart-qty');
@@ -628,7 +628,7 @@ function addProductCart(prod_id) {
 
             //envia o produto para o carrinho
             products_cart.push(product_struct);
-            window.localStorage.setItem('cart-content', product_struct);
+            window.localStorage.setItem('cart-content', JSON.stringify(product_struct));
 
             //aplicar quantidade de itens do carrinho no ícone
             cart_qty_icon = document.getElementById('cart-qty');
@@ -646,7 +646,7 @@ function addProductCart(prod_id) {
             //quantidade + 1 no localstorage
             product_cart.qty++;
             //atualiza o carrinho
-            window.localStorage.setItem('cart-content', products_cart);
+            window.localStorage.setItem('cart-content', JSON.stringify(products_cart));
         }
     }
 
@@ -670,7 +670,7 @@ function deleteFromCart(prod_id) {
         }
     }
 
-    window.localStorage.setItem('cart-content', product_cart);
+    window.localStorage.setItem('cart-content', JSON.stringify(product_cart));
 
     alert('Produto deletado do carrinho');
 }
