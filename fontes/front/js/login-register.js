@@ -93,6 +93,8 @@ function login() {
     const email = document.getElementById('email-login').value;
     const password = document.getElementById('password-login').value;
 
+    console.log(email,password);
+
     var user_login =
     {
         cli_email: email,

@@ -209,10 +209,13 @@ function details()
     div_pai.innerHTML = '';
 
     for (const i in products) {
-        if (products[i].prod_type == product.prod_type) 
+        if (products[i].prod_type == product.prod_type && products[i].prod_id != product.prod_id) 
         {
             console.log(product.prod_type);
 
+            var col = document.createElement('div');
+            col.classList.add("col-md-3");
+            col.classList.add("col-xs-6");
             //div principal
             var product = document.createElement("div");
             product.classList.add("product");
@@ -283,7 +286,8 @@ function details()
             product.appendChild(div_addCart);
 
             //append master
-            div_pai.appendChild(product);
+            col.appendChild(product);
+            div_pai.appendChild(col);
 
         }
 
