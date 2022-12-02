@@ -58,7 +58,7 @@ function isLogged() {
 
 function getCart() {
     var products_cart = [];
-    if (window.localStorage.length != 1) {
+    if (window.sessionStorage.length != 0) {
         products_cart.push(JSON.parse(window.localStorage.getItem('cart')));
 
         for (const i in products_cart) {

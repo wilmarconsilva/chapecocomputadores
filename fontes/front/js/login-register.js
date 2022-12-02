@@ -76,7 +76,7 @@ function sendNewUser() {
         cli_cpfcnpj: cpf
     };
 
-    const user = post('localhost:3000/clientes', user_register);
+    const user = post('http://localhost:3000/clientes', user_register);
 
     if (!user.message) {
         alert('Usuário cadastrado');
@@ -89,6 +89,7 @@ function sendNewUser() {
 }
 
 function login() {
+    
     const email = document.getElementById('email-login').value;
     const password = document.getElementById('password-login').value;
 
@@ -98,7 +99,7 @@ function login() {
         cli_password: password
     }
 
-    const user = post('localhost:3000/clientes', user_login);
+    const user = post('http://localhost:3000/clientes', user_login);
 
     if (user.id != 0) {
         window.sessionStorage.setItem('id', user.id)
