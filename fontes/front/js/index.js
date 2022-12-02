@@ -73,10 +73,17 @@ function isLogged() {
     }
 
 }
+if(window.localStorage.cart != null)
+{
+    alert('teste');
+}
 
 function getCart() {
+
     var products_cart = [];
-    if (window.localStorage.length != 1) {
+    if(window.localStorage.cart != null) 
+    
+    {
         products_cart.push(JSON.parse(window.localStorage.getItem('cart')));
 
         for (const i in products_cart) {
