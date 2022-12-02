@@ -9,9 +9,6 @@ export class Produto {
   prod_desc: string;
 
   @Column()
-  prod_tipo: string;
-
-  @Column()
   prod_arq: string;
   
   @Column()

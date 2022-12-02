@@ -134,9 +134,9 @@ function getCart() {
                 deleteFromCart(product.prod_id)
             };
             //icon delete
-            var i = document.createElement('i');
-            i.classList.add('fa');
-            i.classList.add('fa-close');
+            var icon = document.createElement('i');
+            icon.classList.add('fa');
+            icon.classList.add('fa-close');
             //append
             button.appendChild(i);
             //append pai
@@ -609,9 +609,9 @@ function addProductCart(prod_id) {
                 deleteFromCart(product.prod_id)
             };
             //icon delete
-            var i = document.createElement('i');
-            i.classList.add('fa');
-            i.classList.add('fa-close');
+            var icon = document.createElement('i');
+            icon.classList.add('fa');
+            icon.classList.add('fa-close');
             //append
             button.appendChild(i);
             //append pai
