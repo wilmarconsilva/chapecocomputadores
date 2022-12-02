@@ -241,7 +241,7 @@ function showMostSelledProducts() {
         var btn = document.createElement('button');
         btn.id = 'add-to-cart-btn';
         btn.classList.add('add-to-cart-btn');
-        btn.innerHTML = 'Colocar no carrrinho';
+        btn.innerHTML = 'Colocar no carrinho';
         if (isLogged()) {
             btn.onclick = function (e) {
                 addProductCart(products[i].prod_id);
@@ -325,7 +325,7 @@ function showNewProducts() {
         var btn = document.createElement('button');
         btn.id = 'add-to-cart-btn';
         btn.classList.add('add-to-cart-btn');
-        btn.innerHTML = 'Colocar no carrrinho';
+        btn.innerHTML = 'Colocar no carrinho';
         if (isLogged()) {
             btn.onclick = function (e) {
                 addProductCart(products[i].prod_id);
@@ -362,7 +362,8 @@ function showProductsbyCategory(category) {
     results_title.innerHTML = 'Resultados para ' + categorys.get(category);
     console.log(category);
     //append
-    div_productsByCategoryOrSearch.appendChild(results_title);
+    div_title = document.getElementById('title-products-by-category-or-search');
+    div_title.appendChild(results_title);
 
 
     for (let i in products) {
@@ -419,7 +420,7 @@ function showProductsbyCategory(category) {
             //button
             var btn = document.createElement('button');
             btn.classList.add('add-to-cart-btn');
-            btn.innerHTML = 'Colocar no carrrinho';
+            btn.innerHTML = 'Colocar no carrinho';
             btn.onclick = function (e) {
                 addProductCart(products[i].prod_id);
             }
@@ -511,7 +512,7 @@ function showProductsbySearch() {
             //button
             var btn = document.createElement('button');
             btn.classList.add('add-to-cart-btn');
-            btn.innerHTML = 'Colocar no carrrinho';
+            btn.innerHTML = 'Colocar no carrinho';
             btn.onclick = function (e) {
                 addProductCart(products[i].prod_id);
             }
@@ -544,17 +545,17 @@ function addProductCart(prod_id) {
 
         var product;
         //procurar pelo produto
-        for (const i in products) {
+        for (let i=0; i<products.length; i++) {
             if (products[i].prod_id == prod_id) {
                 product = products[i];
             }
         }
 
         //procura se o produto já existe no carrinho
-        var product_cart
+        var product_cart;
         var flag = 0;
-        for (let i in products_cart) {
-            if (products_cart[i].prod_id == prod_id) {
+        for (let i=0; i<products_cart.length; i++) {
+            if (products_cart[i]['prod_id'] == prod_id) {
                 product_cart = products_cart[i];
                 flag = 1;
             }
@@ -683,7 +684,7 @@ function addProductCart(prod_id) {
 }
 
 function deleteFromCart(prod_id) {
-    //deletar do carrrinho
+    //deletar do carrinho
     div_ProductCart = document.getElementById('product-cart-' + prod_id);
     div_ProductCart.innerHTML = '';
 

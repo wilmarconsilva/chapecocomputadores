@@ -208,6 +208,12 @@ function details()
     var div_pai = document.getElementById('related-products');
     div_pai.innerHTML = '';
 
+    //desc
+    var desc = document.getElementById('product-description');
+    desc.classList.add('text-center');
+    desc.innerHTML = product.prod_desc;
+
+
     for (let i in products) {
         if (products[i].prod_type == product.prod_type && products[i].prod_id != product.prod_id) 
         {
