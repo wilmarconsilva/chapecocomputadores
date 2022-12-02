@@ -101,7 +101,7 @@ function login() {
 
     const user = post('http://localhost:3000/clientes', user_login);
 
-    if (user.id == 0) {
+    if (!user.id) {
         alert('Credenciais incorretas');
     }
 
