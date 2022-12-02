@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Nov-2022 às 01:17
+-- Tempo de geração: 02-Dez-2022 às 20:04
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `sonoscompiuter`
+-- Banco de dados: `chapeco_computadores`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `armazenamento` (
-  `prod_id` int(5) NOT NULL,
+  `prod_id` int(11) NOT NULL,
   `prod_desc` varchar(100) NOT NULL,
   `fabricante` varchar(100) NOT NULL,
   `capacidade` varchar(100) NOT NULL,
@@ -51,17 +51,21 @@ INSERT INTO `armazenamento` (`prod_id`, `prod_desc`, `fabricante`, `capacidade`,
 --
 
 CREATE TABLE `clientes` (
-  `cli_id` int(5) NOT NULL,
+  `cli_id` int(11) NOT NULL,
   `cli_nome` varchar(100) NOT NULL,
   `cli_cpfcnpj` varchar(14) NOT NULL,
-  `cli_endereco` varchar(100) NOT NULL,
-  `cli_bairro` varchar(20) NOT NULL,
-  `cli_municipio` varchar(20) NOT NULL,
-  `cli_uf` varchar(2) NOT NULL,
-  `cli_cep` varchar(8) NOT NULL,
   `cli_fone` varchar(11) DEFAULT NULL,
-  `cli_email` varchar(50) DEFAULT NULL
+  `cli_email` varchar(50) NOT NULL,
+  `cli_password` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `clientes`
+--
+
+INSERT INTO `clientes` (`cli_id`, `cli_nome`, `cli_cpfcnpj`, `cli_fone`, `cli_email`, `cli_password`) VALUES
+(1, 'Rafael', '12345678942', NULL, 'rafael@email.com', '123456'),
+(2, 'Rafael', '12345678945', NULL, 'rafael@email.com', '123456');
 
 -- --------------------------------------------------------
 
@@ -70,7 +74,7 @@ CREATE TABLE `clientes` (
 --
 
 CREATE TABLE `cpus` (
-  `prod_id` int(5) NOT NULL,
+  `prod_id` int(11) NOT NULL,
   `prod_desc` varchar(100) NOT NULL,
   `fabricante` varchar(50) NOT NULL,
   `nucleos` int(11) NOT NULL,
@@ -92,7 +96,7 @@ INSERT INTO `cpus` (`prod_id`, `prod_desc`, `fabricante`, `nucleos`, `frequencia
 --
 
 CREATE TABLE `fontes` (
-  `prod_id` int(5) NOT NULL,
+  `prod_id` int(11) NOT NULL,
   `prod_desc` varchar(100) NOT NULL,
   `fabricante` varchar(100) NOT NULL,
   `potencia` varchar(10) NOT NULL
@@ -113,7 +117,7 @@ INSERT INTO `fontes` (`prod_id`, `prod_desc`, `fabricante`, `potencia`) VALUES
 --
 
 CREATE TABLE `gabinetes` (
-  `prod_id` int(5) NOT NULL,
+  `prod_id` int(11) NOT NULL,
   `prod_desc` varchar(100) NOT NULL,
   `fabricante` varchar(100) NOT NULL,
   `qtde_cooler` int(10) NOT NULL,
@@ -136,7 +140,7 @@ INSERT INTO `gabinetes` (`prod_id`, `prod_desc`, `fabricante`, `qtde_cooler`, `s
 --
 
 CREATE TABLE `gpus` (
-  `prod_id` int(5) NOT NULL,
+  `prod_id` int(11) NOT NULL,
   `prod_desc` varchar(100) NOT NULL,
   `fabricante` varchar(50) NOT NULL,
   `consumo` varchar(10) NOT NULL,
@@ -161,14 +165,24 @@ INSERT INTO `gpus` (`prod_id`, `prod_desc`, `fabricante`, `consumo`, `frequencia
 --
 
 CREATE TABLE `it_pedidos` (
-  `it_num` int(5) NOT NULL,
+  `it_num` int(11) NOT NULL,
   `it_seq` int(3) NOT NULL,
   `it_idprod` int(5) NOT NULL,
   `it_descprod` varchar(100) NOT NULL,
   `it_qtde` int(11) NOT NULL,
   `it_vlrunit` float NOT NULL,
-  `it_vlrtotal` float NOT NULL
+  `it_idpedido` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `it_pedidos`
+--
+
+INSERT INTO `it_pedidos` (`it_num`, `it_seq`, `it_idprod`, `it_descprod`, `it_qtde`, `it_vlrunit`, `it_idpedido`) VALUES
+(1, 1, 1, 'Produto 1', 2, 256, 1),
+(2, 1, 1, 'Produto 1', 2, 256, 1),
+(3, 1, 1, 'Produto 2', 2, 256, 1),
+(4, 1, 1, 'Produto 3', 2, 256, 1);
 
 -- --------------------------------------------------------
 
@@ -177,7 +191,7 @@ CREATE TABLE `it_pedidos` (
 --
 
 CREATE TABLE `mobos` (
-  `prod_id` int(5) NOT NULL,
+  `prod_id` int(11) NOT NULL,
   `prod_desc` varchar(100) NOT NULL,
   `fabricante` varchar(20) NOT NULL,
   `chipset` varchar(10) NOT NULL,
@@ -203,13 +217,19 @@ INSERT INTO `mobos` (`prod_id`, `prod_desc`, `fabricante`, `chipset`, `ram_slots
 --
 
 CREATE TABLE `pedidos` (
-  `ped_numero` int(5) NOT NULL,
-  `ped_idcliente` varchar(100) NOT NULL,
-  `ped_nomecliente` int(11) NOT NULL,
+  `ped_numero` int(11) NOT NULL,
+  `ped_idcliente` int(100) NOT NULL,
   `ped_valortotal` float NOT NULL,
-  `ped_emissao` date NOT NULL,
-  `ped_nota` varchar(9) NOT NULL
+  `ped_emissao` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `pedidos`
+--
+
+INSERT INTO `pedidos` (`ped_numero`, `ped_idcliente`, `ped_valortotal`, `ped_emissao`) VALUES
+(1, 1, 245, '0000-00-00'),
+(2, 1, 245, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -218,7 +238,7 @@ CREATE TABLE `pedidos` (
 --
 
 CREATE TABLE `produtos` (
-  `prod_id` int(5) NOT NULL,
+  `prod_id` int(11) NOT NULL,
   `prod_desc` varchar(100) NOT NULL,
   `prod_qtest` int(11) NOT NULL,
   `prod_preco` float NOT NULL,
@@ -253,7 +273,7 @@ INSERT INTO `produtos` (`prod_id`, `prod_desc`, `prod_qtest`, `prod_preco`, `img
 --
 
 CREATE TABLE `rams` (
-  `prod_id` int(5) NOT NULL,
+  `prod_id` int(11) NOT NULL,
   `prod_desc` varchar(100) NOT NULL,
   `capacidade` varchar(10) NOT NULL,
   `frequencia` varchar(10) NOT NULL,
@@ -275,7 +295,7 @@ INSERT INTO `rams` (`prod_id`, `prod_desc`, `capacidade`, `frequencia`, `tecnolo
 --
 
 CREATE TABLE `users` (
-  `user_id` varchar(16) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `user_pass` varchar(16) NOT NULL,
   `user_priv` int(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -364,37 +384,73 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `armazenamento`
 --
 ALTER TABLE `armazenamento`
-  MODIFY `prod_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `cli_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `cpus`
+--
+ALTER TABLE `cpus`
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `fontes`
+--
+ALTER TABLE `fontes`
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `gabinetes`
 --
 ALTER TABLE `gabinetes`
-  MODIFY `prod_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `gpus`
 --
 ALTER TABLE `gpus`
-  MODIFY `prod_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `it_pedidos`
+--
+ALTER TABLE `it_pedidos`
+  MODIFY `it_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `mobos`
 --
 ALTER TABLE `mobos`
-  MODIFY `prod_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `pedidos`
+--
+ALTER TABLE `pedidos`
+  MODIFY `ped_numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `prod_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `rams`
 --
 ALTER TABLE `rams`
-  MODIFY `prod_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
