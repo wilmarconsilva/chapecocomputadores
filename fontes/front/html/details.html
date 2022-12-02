@@ -55,7 +55,8 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-					<button onclick="location.href='./login-registration.html'" type="button" class="btn btn-primary">Login</button>
+					<button onclick="location.href='./login-registration.html'" type="button"
+						class="btn btn-primary">Login</button>
 				</div>
 			</div>
 		</div>
@@ -100,11 +101,13 @@
 					<!-- SEARCH BAR -->
 					<div class="col-md-6">
 						<div class="header-search">
-							<form>
-								<input class="input" type="text" id="search-product" name="search"
-									placeholder="Digite aqui">
-								<button onclick="showProductsbySearch()" class="search-btn">Pesquisar</button>
-							</form>
+							<a href="./index.html">
+								<form>
+									<input class="input" type="text" id="search-product" name="search"
+										placeholder="Digite aqui">
+									<button onclick="showProductsbySearch()" class="search-btn">Pesquisar</button>
+								</form>
+							</a>
 						</div>
 					</div>
 					<!-- /SEARCH BAR -->
@@ -114,7 +117,8 @@
 						<div class="header-ctn">
 							<!-- Cart -->
 							<div class="dropdown">
-								<a href='./login-registration.html' id='link-cart' class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+								<a href='./login-registration.html' id='link-cart' class="dropdown-toggle"
+									data-toggle="dropdown" aria-expanded="true">
 									<i class="fa fa-shopping-cart"></i>
 									<span>Meu carrinho</span>
 									<div id='cart-qty' class="qty">0</div>
@@ -205,8 +209,8 @@
 				<div class="col-md-12">
 					<ul class="breadcrumb-tree">
 						<li><a href="./index.html">Home</a></li>
-						<li><a id='product-category' href="#">Headphones</a></li>
-						<li class="active">Product name goes here</li>
+						<li><a id='breadcrumb-product-type' href="#">Headphones</a></li>
+						<li id='breadcrumb-product-name' class="active">Product name goes here</li>
 					</ul>
 				</div>
 			</div>
@@ -457,7 +461,7 @@
 	<!-- /FOOTER -->
 
 	<!-- jQuery Plugins -->
-	<script src="/fontes/front/js/index.js"></script>
+	<script src="/fontes/front/js/details.js"></script>
 	<script src="/fontes/front/js/jquery.min.js"></script>
 	<script src="/fontes/front/js/bootstrap.min.js"></script>
 	<script src="/fontes/front/js/slick.min.js"></script>
