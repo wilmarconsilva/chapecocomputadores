@@ -168,7 +168,7 @@ function details()
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let id = urlParams.get('id');
-    console.log(id);
+
     //procura pelo produto
     var product;
     for (const i in products) {
@@ -178,12 +178,114 @@ function details()
     }
 
     //trilha caregoria
-    var breadcrumb_cat = document.getElementById('breadcrumb-product-type');
+    var breadcrumb_cat = document.getElementById('product-type');
     breadcrumb_cat.innerHTML = categorys.get(product.prod_type);
 
     //trilha produto
-    var breadcrumb_name = document.getElementById('breadcrumb-product-name');
+    var breadcrumb_name = document.getElementById('product-name');
     breadcrumb_name.innerHTML = product.prod_desc;
+
+    //nome produto
+    var product_name = document.getElementById('product-name2');
+    product_name.innerHTML = product.prod_desc;
+
+    //preço produto
+    var product_price = document.getElementById('product-price');
+    product_price.innerHTML = 'R$ ' + product.prod_preco + ',99';
+
+    /*//botao
+    var send_to_cart = document.getElementById('send-to-card');
+    send_to_cart.onclick = function (e){addProductCart(product.prod_id)};*/
+
+    //categoria produto
+    var product_cat = document.getElementById('product-category');
+    product_cat.innerHTML = categorys.get(product.prod_type);
+
+    var img = document.getElementById('product-img');
+    img.src = '/fontes/front/img/' + product.imgpath + '.jpg';
+
+    var div_pai = document.getElementById('related-products');
+    div_pai.innerHTML = '';
+
+    for (const i in products) {
+        if (products[i].prod_type == product.prod_type) 
+        {
+
+            //div principal
+            var product = document.createElement("div");
+            product.classList.add("product");
+
+
+            //link img
+            var link_img = document.createElement('a');
+            link_img.href = './details.html?id=' + product.prod_id;
+            link_img.classList.add('product-img');
+
+            link_img.id = products[i].prod_id;
+            link_img.onclick = function (e) {
+                details(this.id)
+            }
+            //img
+            var img = document.createElement("img");
+            img.src = '/fontes/front/img/' + products[i].imgpath + '.jpg';
+            img.classList.add("product-img");
+
+            //append
+            link_img.appendChild(img);
+            //append pai
+            product.appendChild(link_img);
+
+
+            //div body
+            var div_body = document.createElement('div');
+            div_body.classList.add('product-body');
+            //categoria
+            var p = document.createElement('p');
+            p.classList.add('product-category');
+            p.innerHTML = categorys.get(products[i].prod_type);
+            //nome
+            var name = document.createElement('h3');
+            name.classList.add('product-name');
+            link_name = document.createElement('a');
+            link_name.href = './details.html'
+            link_name.innerHTML = products[i].prod_desc;
+            name.appendChild(link_name);
+            //preço
+            price = document.createElement('h4');
+            price.classList.add('product-price');
+            price.innerHTML = 'R$ ' + products[i].prod_preco + ',99';
+            //append
+            div_body.appendChild(p);
+            div_body.appendChild(name);
+            div_body.appendChild(price);
+            //append pai
+            product.appendChild(div_body);
+
+            //div add to cart
+            var div_addCart = document.createElement('div');
+            div_addCart.classList.add('add-to-cart');
+            //button
+            var btn = document.createElement('button');
+            btn.classList.add('add-to-cart-btn');
+            btn.innerHTML = 'Colocar no carrrinho';
+            btn.onclick = function (e) {
+                addProductCart(products[i].prod_id);
+            }
+            var i_btn = document.createElement('i');
+            i_btn.classList.add('fa');
+            i_btn.classList.add('fa-shopping-cart');
+            //append
+            div_addCart.appendChild(btn);
+            btn.appendChild(i_btn);
+            //append pai
+            product.appendChild(div_addCart);
+
+            //append master
+            div_pai.appendChild(product);
+
+        }
+
+    }
 
 }
 

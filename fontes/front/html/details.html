@@ -37,7 +37,7 @@
 
 </head>
 
-<body onload="isLogged();getCart()">
+<body onload="details()">
 
 	<!-- Efetuar login Modal -->
 	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -209,8 +209,8 @@
 				<div class="col-md-12">
 					<ul class="breadcrumb-tree">
 						<li><a href="./index.html">Home</a></li>
-						<li><a id='breadcrumb-product-type' href="#">Headphones</a></li>
-						<li id='breadcrumb-product-name' class="active">Product name goes here</li>
+						<li><a id='product-type' href="index.html">Headphones</a></li>
+						<li id='product-name' class="active">Product name goes here</li>
 					</ul>
 				</div>
 			</div>
@@ -230,29 +230,19 @@
 				<div class="col-md-5 col-md-push-2">
 					<div id="product-main-img">
 						<div class="product-preview">
-							<img src="./img/product01.png" alt="">
+							<img id="product-img" src="./img/product01.png" alt="" style='height: 300px; width: 300px;'>
 						</div>
 					</div>
 				</div>
 				<!-- /Product main img -->
 
-				<!-- Product thumb imgs -->
-				<div class="col-md-2  col-md-pull-5">
-					<div id="product-imgs">
-						<div class="product-preview">
-							<img src="./img/product01.png" alt="">
-						</div>
-					</div>
-				</div>
-				<!-- /Product thumb imgs -->
-
 				<!-- Product details -->
 				<div class="col-md-5">
 					<div class="product-details">
-						<h2 class="product-name">product name goes here</h2>
+						<h2 id='product-name2' class="product-name">product name goes here</h2>
 
 						<div>
-							<h3 class="product-price">$980.00</h3>
+							<h3 id='product-price' class="product-price">$980.00</h3>
 						</div>
 
 						<div class="add-to-cart">
@@ -264,7 +254,7 @@
 									<span class="qty-down">-</span>
 								</div>
 							</div>
-							<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Colocar no
+							<button id="send-to-cart" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Colocar no
 								carrinho</button>
 						</div>
 
@@ -321,20 +311,21 @@
 	<div class="section">
 		<!-- container -->
 		<div class="container">
-			<!-- row -->
-			<div class="row">
 
-				<div class="col-md-12">
-					<div class="section-title text-center">
-						<h3 class="title">PRODUTOS RELACIONADOS</h3>
-					</div>
+			<div class="col-md-12">
+				<div class="section-title text-center">
+					<h3 class="title">PRODUTOS RELACIONADOS</h3>
 				</div>
+			</div>
+
+			<!-- row -->
+			<div id="related-products" class="row">
 
 				<!-- product -->
 				<div class="col-md-3 col-xs-6">
 					<div class="product">
 						<div class="product-img">
-							<img src="./img/product01.png" alt="">
+							<img src="./img/product01.png" alt="" style="height: 100px; width: 100px;">
 						</div>
 						<div class="product-body">
 							<p class="product-category">Category</p>
@@ -350,6 +341,7 @@
 					</div>
 				</div>
 				<!-- /product -->
+
 			</div>
 			<!-- /row -->
 		</div>
@@ -393,21 +385,6 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-
-					<div class="col-md-4 col-xs-6">
-						<div class="footer">
-							<h3 class="footer-title">Categorias</h3>
-							<ul class="main-nav nav navbar-nav">
-								<li class="active"><a href="./index.html">Home</a></li>
-								<li><a href="#" onclick="showProductsbyCategory('MOBO')">Placas-mães</a></li>
-								<li><a href="#" onclick="showProductsbyCategory('CPU')">Processadores</a></li>
-								<li><a href="#" onclick="showProductsbyCategory('RAM')">Memórias RAM</a></li>
-								<li><a href="#" onclick="showProductsbyCategory('SSD')">Armazenamentos</a></li>
-								<li><a href="#" onclick="showProductsbyCategory('FON')">Fontes</a></li>
-								<li><a href="#" onclick="showProductsbyCategory('GAB')">Gabinetes</a></li>
-							</ul>
-						</div>
-					</div>
 
 					<div class="clearfix visible-xs"></div>
 

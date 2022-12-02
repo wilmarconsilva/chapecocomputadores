@@ -97,12 +97,9 @@ function getCart() {
             div_img.classList.add('product-img')
             //link img
             var link_img = document.createElement('a');
-            link_img.href = './details.html';
+            llink_img.href = './details.html?id=' + product.prod_id;
 
             link_img.id = product.prod_id;
-            link_img.onclick = function (e) {
-                details(this.id)
-            }
             //img
             var img = document.createElement("img");
             img.src = '/fontes/front/img/' + product.imgpath + '.jpg';
@@ -122,7 +119,7 @@ function getCart() {
             var name = document.createElement('h3');
             name.classList.add('product-name');
             link_name = document.createElement('a');
-            link_name.href = './details.html';
+            link_img.href = './details.html?id=' + product.prod_id;
             link_name.innerHTML = product.prod_desc;
             name.appendChild(link_name);
             //preço
@@ -220,7 +217,7 @@ function showMostSelledProducts() {
         var name = document.createElement('h3');
         name.classList.add('product-name');
         link_name = document.createElement('a');
-        link_name.href = './details.html'
+        link_img.href = './details.html?id=' + products[i].prod_id;
         link_name.innerHTML = products[i].prod_desc;
         name.appendChild(link_name);
         //preço
@@ -284,13 +281,10 @@ function showNewProducts() {
 
         //link img
         var link_img = document.createElement('a');
-        link_img.href = './details.html'
+        link_img.href = './details.html?id=' + products[random].prod_id;
         link_img.classList.add('product-img')
 
         link_img.id = products[random].prod_id;
-        link_img.onclick = function (e) {
-            details(this.id)
-        }
         //img
         var img = document.createElement("img");
         img.src = '/fontes/front/img/' + products[random].imgpath + '.jpg';
@@ -311,7 +305,7 @@ function showNewProducts() {
         var name = document.createElement('h3');
         name.classList.add('product-name');
         link_name = document.createElement('a');
-        link_name.href = './details.html'
+        link_img.href = './details.html?id=' + products[random].prod_id;
         link_name.innerHTML = products[random].prod_desc;
         name.appendChild(link_name);
         //preço
@@ -385,13 +379,10 @@ function showProductsbyCategory(category) {
 
             //link img
             var link_img = document.createElement('a');
-            link_img.href = './details.html';
+            link_img.href = './details.html?id=' + products[i].prod_id;
             link_img.classList.add('product-img');
 
             link_img.id = products[i].prod_id;
-            link_img.onclick = function (e) {
-                details(this.id)
-            }
             //img
             var img = document.createElement("img");
             img.src = '/fontes/front/img/' + products[i].imgpath + '.jpg';
@@ -413,7 +404,7 @@ function showProductsbyCategory(category) {
             var name = document.createElement('h3');
             name.classList.add('product-name');
             link_name = document.createElement('a');
-            link_name.href = './details.html'
+            link_img.href = './details.html?id=' + products[i].prod_id;
             link_name.innerHTML = products[i].prod_desc;
             name.appendChild(link_name);
             //preço
@@ -484,9 +475,6 @@ function showProductsbySearch() {
             link_img.classList.add('product-img');
 
             link_img.id = products[i].prod_id;
-            link_img.onclick = function (e) {
-                details(this.id)
-            }
             //img
             var img = document.createElement("img");
             img.src = '/fontes/front/img/' + products[i].imgpath + '.jpg';
@@ -508,7 +496,7 @@ function showProductsbySearch() {
             var name = document.createElement('h3');
             name.classList.add('product-name');
             link_name = document.createElement('a');
-            link_name.href = './details.html'
+            link_img.href = './details.html?id=' + product.prod_id;
             link_name.innerHTML = products[i].prod_desc;
             name.appendChild(link_name);
             //preço
@@ -597,7 +585,7 @@ function addProductCart(prod_id) {
             div_img.classList.add('product-img');
             //link img
             var link_img = document.createElement('a');
-            link_img.href = './details.html';
+            link_img.href = './details.html?id=' + product.prod_id;
 
             link_img.id = product.prod_id;
             link_img.onclick = function (e) {
@@ -622,7 +610,7 @@ function addProductCart(prod_id) {
             var name = document.createElement('h3');
             name.classList.add('product-name');
             link_name = document.createElement('a');
-            link_name.href = './details.html';
+            llink_img.href = './details.html?id=' + product.prod_id;
             link_name.innerHTML = product.prod_desc;
             name.appendChild(link_name);
             //preço
