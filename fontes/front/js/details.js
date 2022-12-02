@@ -41,7 +41,7 @@ function isLogged() {
     var cart_icon = document.getElementById('link-cart');
     cart_icon.href = './login-registration.html';
 
-    if (user_id) 
+    if (user_id != 'undefined') 
     {
         login_icon.innerHTML = '';
         cart_icon.href = '';
@@ -58,7 +58,7 @@ function isLogged() {
 
 function getCart() {
     var products_cart = [];
-    if (window.localStorage.length != 0) {
+    if(window.localStorage.getItem('cart') != 'undefined') {
         products_cart.push(JSON.parse(window.localStorage.getItem('cart')));
 
         for (const i in products_cart) {
@@ -172,7 +172,7 @@ function details()
 
     //procura pelo produto
     var product;
-    for (const i in products) {
+    for (let i in products) {
         if (products[i].prod_id == id) {
             product = products[i];
         }
@@ -194,8 +194,8 @@ function details()
     var product_price = document.getElementById('product-price');
     product_price.innerHTML = 'R$ ' + product.prod_preco + ',99';
 
-    /*//botao
-    var send_to_cart = document.getElementById('send-to-card');
+    //botao
+    /*var send_to_cart = document.getElementById('send-to-card');
     send_to_cart.onclick = function (e){addProductCart(product.prod_id)};*/
 
     //categoria produto
@@ -208,7 +208,7 @@ function details()
     var div_pai = document.getElementById('related-products');
     div_pai.innerHTML = '';
 
-    for (const i in products) {
+    for (let i in products) {
         if (products[i].prod_type == product.prod_type && products[i].prod_id != product.prod_id) 
         {
             console.log(product.prod_type);
@@ -273,9 +273,20 @@ function details()
             var btn = document.createElement('button');
             btn.classList.add('add-to-cart-btn');
             btn.innerHTML = 'Colocar no carrrinho';
-            btn.onclick = function (e) {
+            if (isLogged()) 
+        {
+            btn.onclick = function (e) 
+            {
                 addProductCart(products[i].prod_id);
-            }
+            };
+        }
+        else
+        {
+            btn.onclick = function(e) 
+            {
+                openLoginHtml()
+            };
+        }
             var i_btn = document.createElement('i');
             i_btn.classList.add('fa');
             i_btn.classList.add('fa-shopping-cart');
@@ -304,7 +315,7 @@ function addProductCart(prod_id) {
 
         //recebe produtos do carrinho
         var products_cart = [];
-        if (window.localStorage.length != 1) {
+        if(window.localStorage.getItem('cart') != 'undefined') {
             products_cart.push(JSON.parse(window.localStorage.getItem('cart')));
         }
 

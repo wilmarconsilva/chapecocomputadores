@@ -51,7 +51,7 @@ function openLoginHtml() {
 }
 
 function isLogged() {
-    const user_id = window.sessionStorage.getItem('id');
+    const user = window.sessionStorage.getItem('id');
 
     //icone login
     var login_icon = document.getElementById('icon-login');
@@ -59,7 +59,7 @@ function isLogged() {
     var cart_icon = document.getElementById('link-cart');
     cart_icon.href = './login-registration.html';
 
-    if (user_id) 
+    if (user.id != 'undefined' || user.id != 'null' || user.id !=  null) 
     {
         login_icon.innerHTML = '';
         cart_icon.href = '';
@@ -77,12 +77,12 @@ function isLogged() {
 function getCart() {
 
     var products_cart = [];
-    if(window.localStorage.getItem('cart') != null) 
+    if(window.localStorage.getItem('cart') != 'undefined' || window.localStorage.getItem('cart') !=  null || window.localStorage.getItem('cart') !=  'null') 
     
     {
         products_cart.push(JSON.parse(window.localStorage.getItem('cart')));
 
-        for (const i in products_cart) {
+        for (let i in products_cart) {
 
             var product = products_cart[i];
 
@@ -101,7 +101,7 @@ function getCart() {
             div_img.classList.add('product-img')
             //link img
             var link_img = document.createElement('a');
-            llink_img.href = './details.html?id=' + product.prod_id;
+            link_img.href = './details.html?id=' + product.prod_id;
 
             link_img.id = product.prod_id;
             //img
@@ -374,7 +374,7 @@ function showProductsbyCategory(category) {
     div_productsByCategoryOrSearch.appendChild(results_title);
 
 
-    for (const i in products) {
+    for (let i in products) {
         if (products[i].prod_type == category) {
             //div principal
             var product = document.createElement("div");
@@ -466,7 +466,7 @@ function showProductsbySearch() {
     //dados no BD em caixa alta, transformar input em caixa alta
     name = name.toUpperCase();
 
-    for (const i in products) {
+    for (let i in products) {
         if (products[i].prod_desc.includes(name)) {
             //div principal
             var product = document.createElement("div");
@@ -562,7 +562,7 @@ function addProductCart(prod_id) {
         //procura se o produto já existe no carrinho
         var product_cart
         var flag = 0;
-        for (const i in products_cart) {
+        for (let i in products_cart) {
             if (products_cart[i].prod_id == prod_id) {
                 product_cart = products_cart[i];
                 flag = 1;
@@ -612,7 +612,7 @@ function addProductCart(prod_id) {
             var name = document.createElement('h3');
             name.classList.add('product-name');
             link_name = document.createElement('a');
-            llink_img.href = './details.html?id=' + product.prod_id;
+            link_img.href = './details.html?id=' + product.prod_id;
             link_name.innerHTML = product.prod_desc;
             name.appendChild(link_name);
             //preço
@@ -655,7 +655,7 @@ function addProductCart(prod_id) {
                 imgpath: '/fontes/front/img/' + product.imgpath + '.jpg'
             };
 
-            if (products_cart) {
+            if (products_cart,length != 0) {
                 //envia o produto para o carrinho
                 products_cart.push(product_cart);
                 window.sessionStorage.setItem('cart', JSON.stringify(product_struct));
@@ -699,7 +699,7 @@ function deleteFromCart(prod_id) {
     //deletar do local storage
     var product_cart = JSON.parse(window.localStorage.getItem('cart'));
 
-    for (const i in product_cart) {
+    for (let i in product_cart) {
         if (product_cart[i].prod_id == prod_id) {
             product_cart.splice(i, 1);
         }
