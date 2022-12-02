@@ -77,7 +77,8 @@ function isLogged() {
 function getCart() {
 
     var products_cart = [];
-    if (window.localStorage.getItem('cart') != null) {
+    if (window.localStorage.getItem('cart') != null || window.localStorage.cart != 'undefined') 
+    {
         products_cart.push(JSON.parse(window.localStorage.getItem('cart')));
 
         for (let i in products_cart) {
@@ -537,145 +538,147 @@ function addProductCart(prod_id) {
 
         //recebe produtos do carrinho
         var products_cart = [];
-        products_cart.push(JSON.parse(window.sessionStorage.getItem('cart')));
-    }
-
-    var product;
-    //procurar pelo produto
-    for (const i in products) {
-        if (products[i].prod_id == prod_id) {
-            product = products[i];
+        if (window.localStorage.getItem('cart') != null || window.localStorage.cart != 'undefined') {
+            products_cart.push(JSON.parse(window.localStorage.getItem('cart')));
         }
-    }
 
-    //procura se o produto já existe no carrinho
-    var product_cart
-    var flag = 0;
-    for (let i in products_cart) {
-        if (products_cart[i].prod_id == prod_id) {
-            product_cart = products_cart[i];
-            flag = 1;
+        var product;
+        //procurar pelo produto
+        for (const i in products) {
+            if (products[i].prod_id == prod_id) {
+                product = products[i];
+            }
         }
-    }
 
-    if (flag == 0) {
-
-        //carrinho
-        var div_pai = document.getElementById('cart-list');
-
-
-        //produto
-        var div_product = document.createElement('div');
-        div_product.classList.add('product-widget');
-        div_product.id = 'product-cart-' + product.prod_id;
-        //append master
-        div_pai.appendChild(div_product);
-
-        //div img
-        var div_img = document.createElement('div');
-        div_img.classList.add('product-img');
-        //link img
-        var link_img = document.createElement('a');
-        link_img.href = './details.html?id=' + product.prod_id;
-
-        link_img.id = product.prod_id;
-        link_img.onclick = function (e) {
-            details(this.id)
+        //procura se o produto já existe no carrinho
+        var product_cart
+        var flag = 0;
+        for (let i in products_cart) {
+            if (products_cart[i].prod_id == prod_id) {
+                product_cart = products_cart[i];
+                flag = 1;
+            }
         }
-        //img
-        var img = document.createElement("img");
-        img.src = '/fontes/front/img/' + product.imgpath + '.jpg';
-        img.classList.add("product-img");
-        //append
-        link_img.appendChild(img);
-        //append
-        div_img.appendChild(link_img);
-        //append pai
-        div_product.appendChild(link_img);
+
+        if (flag == 0) {
+
+            //carrinho
+            var div_pai = document.getElementById('cart-list');
 
 
-        //div body
-        var div_body = document.createElement('div');
-        div_body.classList.add('product-body');
-        //nome
-        var name = document.createElement('h3');
-        name.classList.add('product-name');
-        link_name = document.createElement('a');
-        link_img.href = './details.html?id=' + product.prod_id;
-        link_name.innerHTML = product.prod_desc;
-        name.appendChild(link_name);
-        //preço
-        var price = document.createElement('h4');
-        price.classList.add('product-price');
-        price.innerHTML = 'R$ ' + product.prod_preco + ',99';
-        //quantidade
-        var span = document.createElement('span');
-        span.id = 'qty-' + prod_id;
-        span.classList.add('qty');
-        span.innerHTML = ' ' + 1 + 'x';
-        price.appendChild(span);
-        //append
-        div_body.appendChild(name);
-        div_body.appendChild(price);
-        //append pai
-        div_product.appendChild(div_body);
+            //produto
+            var div_product = document.createElement('div');
+            div_product.classList.add('product-widget');
+            div_product.id = 'product-cart-' + product.prod_id;
+            //append master
+            div_pai.appendChild(div_product);
 
-        //button delete
-        var button = document.createElement('button');
-        button.classList.add('delete');
-        button.onclick = function (e) {
-            deleteFromCart(product.prod_id)
-        };
-        //icon delete
-        var icon = document.createElement('i');
-        icon.classList.add('fa');
-        icon.classList.add('fa-close');
-        //append
-        button.appendChild(icon);
-        //append pai
-        div_product.appendChild(button);
+            //div img
+            var div_img = document.createElement('div');
+            div_img.classList.add('product-img');
+            //link img
+            var link_img = document.createElement('a');
+            link_img.href = './details.html?id=' + product.prod_id;
 
-        //transforma o produto em struct
-        var product_struct =
-        {
-            prod_id: product.prod_id,
-            price: product.price,
-            qty: 1,
-            imgpath: '/fontes/front/img/' + product.imgpath + '.jpg'
-        };
+            link_img.id = product.prod_id;
+            link_img.onclick = function (e) {
+                details(this.id)
+            }
+            //img
+            var img = document.createElement("img");
+            img.src = '/fontes/front/img/' + product.imgpath + '.jpg';
+            img.classList.add("product-img");
+            //append
+            link_img.appendChild(img);
+            //append
+            div_img.appendChild(link_img);
+            //append pai
+            div_product.appendChild(link_img);
 
-        if (products_cart.length != 0) {
-            //envia o produto para o carrinho
-            products_cart.push(product_cart);
-            window.sessionStorage.setItem('cart', JSON.stringify(product_struct));
 
-            //aplicar quantidade de itens do carrinho no ícone
-            cart_qty_icon = document.getElementById('cart-qty');
-            cart_qty_icon.innerHTML = products_cart.length
+            //div body
+            var div_body = document.createElement('div');
+            div_body.classList.add('product-body');
+            //nome
+            var name = document.createElement('h3');
+            name.classList.add('product-name');
+            link_name = document.createElement('a');
+            link_img.href = './details.html?id=' + product.prod_id;
+            link_name.innerHTML = product.prod_desc;
+            name.appendChild(link_name);
+            //preço
+            var price = document.createElement('h4');
+            price.classList.add('product-price');
+            price.innerHTML = 'R$ ' + product.prod_preco + ',99';
+            //quantidade
+            var span = document.createElement('span');
+            span.id = 'qty-' + prod_id;
+            span.classList.add('qty');
+            span.innerHTML = ' ' + 1 + 'x';
+            price.appendChild(span);
+            //append
+            div_body.appendChild(name);
+            div_body.appendChild(price);
+            //append pai
+            div_product.appendChild(div_body);
+
+            //button delete
+            var button = document.createElement('button');
+            button.classList.add('delete');
+            button.onclick = function (e) {
+                deleteFromCart(product.prod_id)
+            };
+            //icon delete
+            var icon = document.createElement('i');
+            icon.classList.add('fa');
+            icon.classList.add('fa-close');
+            //append
+            button.appendChild(icon);
+            //append pai
+            div_product.appendChild(button);
+
+            //transforma o produto em struct
+            var product_struct =
+            {
+                prod_id: product.prod_id,
+                price: product.price,
+                qty: 1,
+                imgpath: '/fontes/front/img/' + product.imgpath + '.jpg'
+            };
+
+            if (products_cart.length != 0) {
+                //envia o produto para o carrinho
+                products_cart.push(product_cart);
+                window.sessionStorage.setItem('cart', JSON.stringify(product_struct));
+
+                //aplicar quantidade de itens do carrinho no ícone
+                cart_qty_icon = document.getElementById('cart-qty');
+                cart_qty_icon.innerHTML = products_cart.length
+            }
+
+            else {
+                //aplicar quantidade de itens do carrinho no ícone
+                cart_qty_icon = document.getElementById('cart-qty');
+                cart_qty_icon.innerHTML = 1;
+                window.localStorage.setItem('cart', JSON.stringify(product_struct));
+            }
+
+            alert('Produto adicionado ao carrinho');
         }
 
         else {
-            //aplicar quantidade de itens do carrinho no ícone
-            cart_qty_icon = document.getElementById('cart-qty');
-            cart_qty_icon.innerHTML = 1;
-            window.localStorage.setItem('cart', JSON.stringify(product_struct));
+            //quantidade + 1 no carrinho
+            var qty = document.getElementById('qty-' + prod_id);
+            qty = parseInt(qty.textContent, 10);
+            qty.innerHTML = qty + 1 + ' x';
+
+            //quantidade + 1 no localstorage
+            product_cart.qty = product_cart.qty + 1;
+            //atualiza o carrinho
+            window.localStorage.setItem('cart', JSON.stringify(product_cart));
+
+            alert('Quantidade do produto aumentada no carrinho');
         }
-
-        alert('Produto adicionado ao carrinho');
-    }
-
-    else {
-        //quantidade + 1 no carrinho
-        var qty = document.getElementById('qty-' + prod_id);
-        qty = parseInt(qty.textContent, 10);
-        qty.innerHTML = qty + 1 + ' x';
-
-        //quantidade + 1 no localstorage
-        product_cart.qty = product_cart.qty + 1;
-        //atualiza o carrinho
-        window.localStorage.setItem('cart', JSON.stringify(product_cart));
-
-        alert('Quantidade do produto aumentada no carrinho');
     }
 }
 
