@@ -89,7 +89,7 @@ function sendNewUser() {
 }
 
 function login() {
-    
+
     const email = document.getElementById('email-login').value;
     const password = document.getElementById('password-login').value;
 
@@ -101,13 +101,13 @@ function login() {
 
     const user = post('http://localhost:3000/clientes', user_login);
 
-    if (user.id != 0) {
-        window.sessionStorage.setItem('id', user.id)
-        alert('Login efetuado com sucesso')
+    if (user.id == 0) {
+        alert('Credenciais incorretas');
     }
 
     else {
-        alert('Credenciais incorretas');
+        window.sessionStorage.setItem('id', user.id)
+        alert('Login efetuado com sucesso')
     }
 
 }
