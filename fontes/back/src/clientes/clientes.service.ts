@@ -29,10 +29,14 @@ export class ClientesService {
       cli_email: loginClienteDto.cli_email
     });
     if (exists && exists.cli_password == loginClienteDto.cli_password){
-      return exists
+      return {
+        cli_id:exists.cli_id,
+        cli_nome: exists.cli_nome,
+        cli_email:exists.cli_email
+      }
     }else{
       return {
-        id:0
+        id:null
       }
     }
   }
