@@ -33,7 +33,7 @@ function openLoginHtml() {
 }
 
 function isLogged() {
-    const user_id = window.sessionStorage.getItem('id');
+    const user_id = window.localStorage.getItem('id');
 
     //icone login
     var login_icon = document.getElementById('icon-login');
@@ -58,7 +58,7 @@ function isLogged() {
 
 function getCart() {
     var products_cart = [];
-    if (window.sessionStorage.length != 0) {
+    if (window.localStorage.length != 0) {
         products_cart.push(JSON.parse(window.localStorage.getItem('cart')));
 
         for (const i in products_cart) {
@@ -209,10 +209,13 @@ function details()
     div_pai.innerHTML = '';
 
     for (const i in products) {
-        if (products[i].prod_type == product.prod_type) 
+        if (products[i].prod_type == product.prod_type && products[i].prod_id != product.prod_id) 
         {
             console.log(product.prod_type);
 
+            var col = document.createElement('div');
+            col.classList.add("col-md-3");
+            col.classList.add("col-xs-6");
             //div principal
             var product = document.createElement("div");
             product.classList.add("product");
@@ -283,7 +286,8 @@ function details()
             product.appendChild(div_addCart);
 
             //append master
-            div_pai.appendChild(product);
+            col.appendChild(product);
+            div_pai.appendChild(col);
 
         }
 
@@ -294,7 +298,7 @@ function details()
 function addProductCart(prod_id) {
 
     //vef login
-    const user_id = window.sessionStorage.getItem('id');
+    const user_id = window.localStorage.getItem('id');
 
     if (user_id) {
 
@@ -302,7 +306,6 @@ function addProductCart(prod_id) {
         var products_cart = [];
         if (window.localStorage.length != 1) {
             products_cart.push(JSON.parse(window.localStorage.getItem('cart')));
-            window.localStorage.clear();
         }
 
         var product;

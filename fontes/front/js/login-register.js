@@ -19,7 +19,7 @@ function post(url, obj) {
 }
 
 function isLogged() {
-    const user_id = window.sessionStorage.getItem('id');
+    const user_id = window.localStorage.getItem('id');
 
     //icone login
     var login_icon = document.getElementById('icon-login');
@@ -63,10 +63,10 @@ categorys.set('GPU', 'Placas de vídeo');
 function sendNewUser() {
 
     //get data
-    const name = document.getElementById('user-name').value;
-    const email = document.getElementById('user-email').value;
-    const password = document.getElementById('user-password').value;
-    const cpf = document.getElementById('user-cpf').value;
+    var name = document.getElementById('user-name').value;
+    var email = document.getElementById('user-email').value;
+    var password = document.getElementById('user-password').value;
+    var cpf = document.getElementById('user-cpf').value;
 
     var user_register =
     {
@@ -80,6 +80,11 @@ function sendNewUser() {
 
     if (!user.message) {
         alert('Usuário cadastrado');
+
+        name.value = '';
+        email.value = '';
+        password.value = '';
+        cpf.value = '';
     }
 
     else {
@@ -90,8 +95,10 @@ function sendNewUser() {
 
 function login() {
 
-    const email = document.getElementById('email-login').value;
-    const password = document.getElementById('password-login').value;
+    var email = document.getElementById('email-login').value;
+    var password = document.getElementById('password-login').value;
+
+    console.log(email,password);
 
     var user_login =
     {
@@ -99,15 +106,19 @@ function login() {
         cli_password: password
     }
 
-    const user = post('http://localhost:3000/clientes', user_login);
+    const user = post('http://localhost:3000/clientes/login', user_login);
 
-    if (!user.id) {
+    if (user.cli_id == null) {
         alert('Credenciais incorretas');
     }
 
     else {
-        window.sessionStorage.setItem('id', user.id)
-        alert('Login efetuado com sucesso')
+
+        window.localStorage.setItem('id', user.cli_id);
+        alert('Login efetuado com sucesso');
+
+        email.value = '';
+        password.value = '';
     }
 
 }
