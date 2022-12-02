@@ -113,7 +113,8 @@ function login() {
     }
 
     else {
-        window.localStorage.setItem('id', user.id)
+
+        window.localStorage.setItem('id', user.cli_id);
         alert('Login efetuado com sucesso');
 
         email.value = '';
