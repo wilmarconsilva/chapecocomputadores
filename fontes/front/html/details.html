@@ -45,17 +45,17 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Você precisa estar logado.</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					...
+					Efetue Login para continuar
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+					<button onclick="location.href='./login-registration.html'" type="button" class="btn btn-primary">Login</button>
 				</div>
 			</div>
 		</div>
@@ -75,7 +75,7 @@
 				</ul>
 				<ul class="header-links pull-right">
 					<li><a href="#"><i class="fa fa-dollar"></i>BRL</a></li>
-					<li><a href="#"><i class="fa fa-user-o"></i> Minha Conta</a></li>
+					<li><a id='icon-login' href="./login-registration.html"><i class="fa fa-user-o"></i> Login</a></li>
 				</ul>
 			</div>
 		</div>
@@ -101,8 +101,9 @@
 					<div class="col-md-6">
 						<div class="header-search">
 							<form>
-								<input class="input" placeholder="Search here">
-								<button class="search-btn">Pesquisar</button>
+								<input class="input" type="text" id="search-product" name="search"
+									placeholder="Digite aqui">
+								<button onclick="showProductsbySearch()" class="search-btn">Pesquisar</button>
 							</form>
 						</div>
 					</div>
@@ -113,14 +114,16 @@
 						<div class="header-ctn">
 							<!-- Cart -->
 							<div class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+								<a href='./login-registration.html' id='link-cart' class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 									<i class="fa fa-shopping-cart"></i>
 									<span>Meu carrinho</span>
-									<div class="qty">0</div>
+									<div id='cart-qty' class="qty">0</div>
 								</a>
 								<div class="cart-dropdown">
-									<div class="cart-list">
-										<div class="product-widget">
+									<div id="cart-list" class="cart-list">
+
+										<!-- Produto -->
+										<div id='product-cart' class="product-widget">
 											<div class="product-img">
 												<img src="./img/product01.png" alt="">
 											</div>
@@ -128,16 +131,22 @@
 												<h3 class="product-name"><a href="#">product name goes here</a></h3>
 												<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
 											</div>
-											<button class="delete"><i class="fa fa-close"></i></button>
+											<button onclick="deleteFromCart()" class="delete"><i
+													class="fa fa-close"></i>
+											</button>
 										</div>
+										<!-- Produto -->
 									</div>
-									<div class="cart-summary">
-										<small>3 Item(s) selected</small>
-										<h5>SUBTOTAL: $2940.00</h5>
+
+									<!-- Resumo -->
+									<div id='cart-summary' class="cart-summary">
+										<small>1 Item(s) selected</small>
+										<h5>SUBTOTAL: $980.00</h5>
 									</div>
-									<div class="cart-btns">
-										<a href="#">Olhar carrinho</a>
-										<a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+									<!-- Resumo -->
+
+									<div class="cart-btns text-center">
+										<a href="#">Comprar <i class="fa fa-arrow-circle-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -171,15 +180,13 @@
 			<div id="responsive-nav">
 				<!-- NAV -->
 				<ul class="main-nav nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Placas-mães</a></li>
-					<li><a href="#">Processadores</a></li>
-					<li><a href="#">Memórias RAM</a></li>
-					<li><a href="#">Armazenamentos</a></li>
-					<li><a href="#">Fontes</a></li>
-					<li><a href="#">Gabinetes</a></li>
-					<li><a href="#">Teclados/Mouses</a></li>
-					<li><a href="#">Monitores</a></li>
+					<li class="active"><a href="./index.html">Home</a></li>
+					<li><a href="#" onclick="showProductsbyCategory('MOBO')">Placas-mães</a></li>
+					<li><a href="#" onclick="showProductsbyCategory('CPU')">Processadores</a></li>
+					<li><a href="#" onclick="showProductsbyCategory('RAM')">Memórias RAM</a></li>
+					<li><a href="#" onclick="showProductsbyCategory('SSD')">Armazenamentos</a></li>
+					<li><a href="#" onclick="showProductsbyCategory('FON')">Fontes</a></li>
+					<li><a href="#" onclick="showProductsbyCategory('GAB')">Gabinetes</a></li>
 				</ul>
 				<!-- /NAV -->
 			</div>
@@ -386,15 +393,14 @@
 					<div class="col-md-4 col-xs-6">
 						<div class="footer">
 							<h3 class="footer-title">Categorias</h3>
-							<ul class="footer-links">
-								<li><a href="#">Placas-mães</a></li>
-								<li><a href="#">Processadores</a></li>
-								<li><a href="#">Memórias RAM</a></li>
-								<li><a href="#">Armazenamentos</a></li>
-								<li><a href="#">Fontes</a></li>
-								<li><a href="#">Gabinetes</a></li>
-								<li><a href="#">Teclados/Mouses</a></li>
-								<li><a href="#">Monitores</a></li>
+							<ul class="main-nav nav navbar-nav">
+								<li class="active"><a href="./index.html">Home</a></li>
+								<li><a href="#" onclick="showProductsbyCategory('MOBO')">Placas-mães</a></li>
+								<li><a href="#" onclick="showProductsbyCategory('CPU')">Processadores</a></li>
+								<li><a href="#" onclick="showProductsbyCategory('RAM')">Memórias RAM</a></li>
+								<li><a href="#" onclick="showProductsbyCategory('SSD')">Armazenamentos</a></li>
+								<li><a href="#" onclick="showProductsbyCategory('FON')">Fontes</a></li>
+								<li><a href="#" onclick="showProductsbyCategory('GAB')">Gabinetes</a></li>
 							</ul>
 						</div>
 					</div>
@@ -415,7 +421,7 @@
 						<div class="footer">
 							<h3 class="footer-title">Serviços</h3>
 							<ul class="footer-links">
-								<li><a href="#">Minha Conta</a></li>
+								<li id="icon-login"><a href="./login-registration.html">Login</a></li>
 								<li><a href="#">Olhar Carrinho</a></li>
 							</ul>
 						</div>
@@ -451,6 +457,7 @@
 	<!-- /FOOTER -->
 
 	<!-- jQuery Plugins -->
+	<script src="/fontes/front/js/index.js"></script>
 	<script src="/fontes/front/js/jquery.min.js"></script>
 	<script src="/fontes/front/js/bootstrap.min.js"></script>
 	<script src="/fontes/front/js/slick.min.js"></script>
