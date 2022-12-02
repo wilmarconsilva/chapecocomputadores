@@ -63,10 +63,10 @@ categorys.set('GPU', 'Placas de vídeo');
 function sendNewUser() {
 
     //get data
-    const name = document.getElementById('user-name').value;
-    const email = document.getElementById('user-email').value;
-    const password = document.getElementById('user-password').value;
-    const cpf = document.getElementById('user-cpf').value;
+    var name = document.getElementById('user-name').value;
+    var email = document.getElementById('user-email').value;
+    var password = document.getElementById('user-password').value;
+    var cpf = document.getElementById('user-cpf').value;
 
     var user_register =
     {
@@ -80,6 +80,11 @@ function sendNewUser() {
 
     if (!user.message) {
         alert('Usuário cadastrado');
+
+        var name = document.getElementById('user-name').value = '';
+        var email = document.getElementById('user-email').value = '';
+        var password = document.getElementById('user-password').value = '';
+        var cpf = document.getElementById('user-cpf').value = '';
     }
 
     else {
@@ -90,8 +95,8 @@ function sendNewUser() {
 
 function login() {
 
-    const email = document.getElementById('email-login').value;
-    const password = document.getElementById('password-login').value;
+    var email = document.getElementById('email-login').value;
+    var password = document.getElementById('password-login').value;
 
     console.log(email,password);
 
@@ -109,7 +114,10 @@ function login() {
 
     else {
         window.sessionStorage.setItem('id', user.id)
-        alert('Login efetuado com sucesso')
+        alert('Login efetuado com sucesso');
+
+        email = document.getElementById('user-email').value = '';
+        password = document.getElementById('user-password').value = '';
     }
 
 }
