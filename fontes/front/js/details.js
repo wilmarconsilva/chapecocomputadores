@@ -25,6 +25,7 @@ categorys.set('RAM', 'Memórias');
 categorys.set('GAB', 'Gabinetes');
 categorys.set('FON', 'Fontes');
 categorys.set('SSD', 'Armazenamentos');
+categorys.set('GPU', 'Placas de vídeo');
 
 function openLoginHtml() {
     alert('Você precisa logar para adicionar ao carrinho');
@@ -210,6 +211,7 @@ function details()
     for (const i in products) {
         if (products[i].prod_type == product.prod_type) 
         {
+            console.log(product.prod_type);
 
             //div principal
             var product = document.createElement("div");

@@ -35,6 +35,7 @@ categorys.set('RAM', 'Memórias');
 categorys.set('GAB', 'Gabinetes');
 categorys.set('FON', 'Fontes');
 categorys.set('SSD', 'Armazenamentos');
+categorys.set('GPU', 'Placas de vídeo');
 
 //limpar mais vendidos
 var div_mostSelledProducts = document.getElementById('products-slick');
