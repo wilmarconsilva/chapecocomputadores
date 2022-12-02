@@ -230,28 +230,19 @@
 								<h3 class="title">DADOS PARA ENTREGA</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="Nome">
+								<input id="address" class="input" type="text" name="address" placeholder="Endereço">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Sobrenome">
+								<input id='city' class="input" type="text" name="city" placeholder="Cidade">
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email">
+								<input id="country" class="input" type="text" name="country" placeholder="País">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="address" placeholder="Endereço">
+								<input id="zip-code" class="input" type="text" name="zip-code" placeholder="CEP">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="city" placeholder="Cidade">
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="country" placeholder="País">
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="zip-code" placeholder="CEP">
-							</div>
-							<div class="form-group">
-								<input class="input" type="tel" name="tel" placeholder="Telefone">
+								<input id="tel" class="input" type="tel" name="tel" placeholder="Telefone">
 							</div>
 						</div>
 						<!-- /Shiping Details -->
@@ -275,24 +266,24 @@
 							</div>
 							<div class="order-products">
 								<div class="order-col">
-									<div>1x Product Name Goes Here</div>
-									<div>$980.00</div>
+									<div>1x Produto</div>
+									<div>R$ 00.00</div>
 								</div>
 								<div class="order-col">
-									<div>2x Product Name Goes Here</div>
-									<div>$980.00</div>
+									<div>1x Produto</div>
+									<div>R$ 00.00</div>
 								</div>
 							</div>
 							<div class="order-col">
-								<div>Shiping</div>
-								<div><strong>FREE</strong></div>
+								<div>Frete</div>
+								<div><strong>Grátis</strong></div>
 							</div>
 							<div class="order-col">
 								<div><strong>TOTAL</strong></div>
-								<div><strong class="order-total">$2940.00</strong></div>
+								<div><strong class="order-total">R$ 00.00</strong></div>
 							</div>
 						</div>
-						<a href="#" class="primary-btn order-submit">Place order</a>
+						<a onclick="addOrder()" href="#" class="primary-btn order-submit">Efetuar pedido</a>
 					</div>
 					<!-- /Order Details -->
 				</div>
@@ -390,7 +381,7 @@
 	<!-- /FOOTER -->
 
 	<!-- jQuery Plugins -->
-	<script src="/fontes/front/js/index.js"></script>
+	<script src="/fontes/front/js/checkout.js"></script>
 	<script src="/fontes/front/js/jquery.min.js"></script>
 	<script src="/fontes/front/js/bootstrap.min.js"></script>
 	<script src="/fontes/front/js/slick.min.js"></script>
