@@ -99,7 +99,7 @@ function login() {
         cli_password: password
     }
 
-    const user = post('http://localhost:3000/clientes', user_login);
+    const user = post('http://localhost:3000/login', user_login);
 
     if (!user.id) {
         alert('Credenciais incorretas');
