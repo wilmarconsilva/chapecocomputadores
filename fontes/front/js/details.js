@@ -33,7 +33,7 @@ function openLoginHtml() {
 }
 
 function isLogged() {
-    const user_id = window.sessionStorage.getItem('id');
+    const user_id = window.localStorage.getItem('id');
 
     //icone login
     var login_icon = document.getElementById('icon-login');
@@ -58,7 +58,7 @@ function isLogged() {
 
 function getCart() {
     var products_cart = [];
-    if (window.sessionStorage.length != 0) {
+    if (window.localStorage.length != 0) {
         products_cart.push(JSON.parse(window.localStorage.getItem('cart')));
 
         for (const i in products_cart) {
@@ -298,7 +298,7 @@ function details()
 function addProductCart(prod_id) {
 
     //vef login
-    const user_id = window.sessionStorage.getItem('id');
+    const user_id = window.localStorage.getItem('id');
 
     if (user_id) {
 
@@ -306,7 +306,6 @@ function addProductCart(prod_id) {
         var products_cart = [];
         if (window.localStorage.length != 1) {
             products_cart.push(JSON.parse(window.localStorage.getItem('cart')));
-            window.localStorage.clear();
         }
 
         var product;

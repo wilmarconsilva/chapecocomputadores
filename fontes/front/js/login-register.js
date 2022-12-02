@@ -19,7 +19,7 @@ function post(url, obj) {
 }
 
 function isLogged() {
-    const user_id = window.sessionStorage.getItem('id');
+    const user_id = window.localStorage.getItem('id');
 
     //icone login
     var login_icon = document.getElementById('icon-login');
@@ -81,10 +81,10 @@ function sendNewUser() {
     if (!user.message) {
         alert('Usuário cadastrado');
 
-        var name = document.getElementById('user-name').value = '';
-        var email = document.getElementById('user-email').value = '';
-        var password = document.getElementById('user-password').value = '';
-        var cpf = document.getElementById('user-cpf').value = '';
+        name.value = '';
+        email.value = '';
+        password.value = '';
+        cpf.value = '';
     }
 
     else {
@@ -108,16 +108,16 @@ function login() {
 
     const user = post('http://localhost:3000/clientes/login', user_login);
 
-    if (!user.id) {
+    if (user.cli_id == null) {
         alert('Credenciais incorretas');
     }
 
     else {
-        window.sessionStorage.setItem('id', user.id)
+        window.localStorage.setItem('id', user.id)
         alert('Login efetuado com sucesso');
 
-        email = document.getElementById('user-email').value = '';
-        password = document.getElementById('user-password').value = '';
+        email.value = '';
+        password.value = '';
     }
 
 }
