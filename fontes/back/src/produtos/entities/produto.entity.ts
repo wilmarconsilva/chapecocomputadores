@@ -7,9 +7,6 @@ export class Produto {
 
   @Column()
   prod_desc: string;
-
-  @Column()
-  prod_arq: string;
   
   @Column()
   prod_qtest: number;
